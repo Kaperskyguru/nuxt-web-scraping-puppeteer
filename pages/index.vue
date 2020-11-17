@@ -20,6 +20,7 @@
         >
           GitHub
         </a>
+        <nuxt-link to="/jobs" class="button--grey"> Go to Jobs </nuxt-link>
       </div>
     </div>
   </div>
