@@ -11,7 +11,7 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [],
+  css: ['~/assets/main.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [],
@@ -22,7 +22,7 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module',
+    // '@nuxtjs/eslint-module',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -35,5 +35,23 @@ export default {
   axios: {},
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    extend(config, { isServer, isClient }) {
+      config.externals = config.externals || {}
+      if (!isServer) {
+        config.node = {
+          fs: 'empty',
+        }
+        if (Array.isArray(config.externals)) {
+          config.externals.push({
+            puppeteer: require('puppeteer'),
+          })
+        } else {
+          config.externals.puppeteer = require('puppeteer')
+        }
+      }
+      config.output.globalObject = 'this'
+      return config
+    },
+  },
 }

@@ -8,12 +8,16 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint": "yarn lint:js"
+    "lint": "yarn lint:js",
+    "postinstall": "node script"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
     "core-js": "^3.6.5",
-    "nuxt": "^2.14.6"
+    "net": "^1.0.2",
+    "nuxt": "^2.14.6",
+    "puppeteer": "^5.5.0",
+    "tls": "0.0.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",
@@ -24,5 +28,11 @@
     "eslint-plugin-nuxt": "^1.0.0",
     "eslint-plugin-prettier": "^3.1.4",
     "prettier": "^2.1.2"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false,
+    "tls": false
   }
 }
